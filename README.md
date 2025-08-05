@@ -8,7 +8,7 @@ Formulaire d'enregistrement client développé avec **Symfony**, **HTML**, **CSS
 
 Conformément aux exigences, le projet contient exactement les fichiers demandés :
 
-- ✅ **index.html** - Formulaire HTML principal
+- ✅ **index.html,twig** - Formulaire HTML principal
 - ✅ **style.css** - Styles CSS avec thème adaptatif
 - ✅ **script.js** - JavaScript pour validation client et fonctionnalités
 - ✅ **User.php** - Entité utilisateur avec contraintes de validation
@@ -27,19 +27,13 @@ Conformément aux exigences, le projet contient exactement les fichiers demandé
 \`\`\`bash
 # 1. Cloner le projet
 git clone <votre-repo>
-cd symfony-client-form
+cd symfonyClient
 
 # 2. Construire et lancer les conteneurs
 docker-compose up --build -d
 
-# 3. Installer les dépendances Symfony
-docker-compose exec web composer install
 
-# 4. Configurer les permissions
-docker-compose exec web chown -R www-data:www-data /var/www/html/var
-
-# 5. Accéder à l'application
-# URL: http://localhost:8080
+# URL: http://localhost:9000
 \`\`\`
 
 ### Vérification de l'Installation
@@ -49,7 +43,7 @@ docker-compose exec web chown -R www-data:www-data /var/www/html/var
 docker-compose ps
 
 # Tester l'accès à l'application
-curl -I http://localhost:8080
+curl -I http://localhost:9000
 \`\`\`
 
 ## 📊 Règles de Validation
@@ -111,11 +105,11 @@ function saveFormValues() {
 \`\`\`
 
 2. **Côté Serveur** : Renvoi des données dans la réponse JSON en cas d'erreur
-3. **Restauration** : Rechargement automatique des valeurs au chargement de la page
 
-## 🌍 Fonctionnalités Implémentées
 
-### Fonctionnalités Obligatoires ✅
+##  Fonctionnalités Implémentées
+
+### Fonctionnalités Obligatoires 
 - ✅ Validation client (JavaScript) et serveur (Symfony)
 - ✅ Conservation des valeurs en cas d'erreur
 - ✅ Messages d'erreur clairs et visibles
@@ -125,34 +119,13 @@ function saveFormValues() {
 - ✅ Design responsive (mobile, tablette, desktop)
 - ✅ API OpenStreetMap pour autocomplétion d'adresse
 
-### Points Bonus Implémentés ⭐
+### Points Bonus Implémentés 
 - ✅ Sauvegarde des données en **data.json** et **data.csv**
 - ✅ Protection CSRF avec jetons de sécurité
 - ✅ Sélecteur de langue (français/anglais) via JavaScript
 - ✅ Design responsive avancé avec champs adaptés mobile
 
-## 📁 Structure du Projet
 
-\`\`\`
-symfony-client-form/
-├── public/
-│   ├── index.html              # Formulaire HTML principal
-│   ├── style.css               # Styles CSS avec thème adaptatif
-│   ├── script.js               # JavaScript validation + fonctionnalités
-│   └── api/
-│       └── submit.php          # Point d'entrée API
-├── src/
-│   ├── Entity/
-│   │   └── User.php            # Entité utilisateur
-│   └── Controller/
-│       └── UserController.php  # Contrôleur Symfony
-├── var/
-│   ├── data.json              # Sauvegarde JSON (généré)
-│   └── data.csv               # Sauvegarde CSV (généré)
-├── Dockerfile                 # Configuration Docker
-├── docker-compose.yml         # Orchestration services
-└── README.md                  # Documentation
-\`\`\`
 
 ## 🔒 Sécurité
 
@@ -252,9 +225,6 @@ docker-compose restart
 # Arrêter les services
 docker-compose down
 
-# Voir les données sauvegardées
-docker-compose exec web cat /var/www/html/var/data.json
-docker-compose exec web cat /var/www/html/var/data.csv
 
 # Nettoyer et reconstruire
 docker-compose down && docker-compose up --build -d
