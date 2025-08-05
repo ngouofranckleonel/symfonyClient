@@ -1,0 +1,10 @@
+app_client_form:
+    path: /
+    controller: App\Controller\IndexController::index
+
+app_client_form_submit:
+    path: /submit
+    controller: App\Controller\UserController::submit
+    methods: [POST]
+
+

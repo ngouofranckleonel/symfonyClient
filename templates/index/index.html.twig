@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Client Robuste et Adaptatif</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sélecteur de langue (Point bonus) -->
+    <div class="language-selector">
+        <button onclick="changeLanguage('fr')" class="lang-btn active" data-lang="fr">FR</button>
+        <button onclick="changeLanguage('en')" class="lang-btn" data-lang="en">EN</button>
+    </div>
+    
+    <div class="container">
+        <div class="form-wrapper">
+            <h1 data-fr="Formulaire d'enregistrement client" data-en="Client Registration Form">
+                Formulaire d'enregistrement client
+            </h1>
+            
+            <!-- Zone de succès -->
+            <div id="successMessage" class="success-message" style="display: none;">
+                <h2 data-fr="Inscription réussie !" data-en="Registration successful!">Inscription réussie !</h2>
+                <div id="userSummary" class="user-summary"></div>
+                <button onclick="resetForm()" class="btn-primary" data-fr="Nouveau formulaire" data-en="New form">
+                    Nouveau formulaire
+                </button>
+            </div>
+            
+            <!-- Formulaire -->
+            <form id="clientForm" action="api/submit.php" method="POST" style="display: block;">
+                <!-- Token CSRF (Point bonus) -->
+                <input type="hidden" id="csrfToken" name="_token" value="">
+                
+                <div class="form-group">
+                    <label for="fullName" data-fr="Nom complet *" data-en="Full name *">Nom complet *</label>
+                    <input type="text" id="fullName" name="fullName" class="form-control" 
+                           placeholder="Entrez votre nom complet" required>
+                    <div class="error-message" id="fullName-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" data-fr="Email *" data-en="Email *">Email *</label>
+                    <input type="email" id="email" name="email" class="form-control" 
+                           placeholder="exemple@email.com" required>
+                    <div class="error-message" id="email-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" data-fr="Téléphone *" data-en="Phone *">Téléphone *</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" 
+                           placeholder="0123456789" required>
+                    <div class="error-message" id="phone-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthDate" data-fr="Date de naissance *" data-en="Birth date *">Date de naissance *</label>
+                    <input type="date" id="birthDate" name="birthDate" class="form-control" required>
+                    <div class="error-message" id="birthDate-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address" data-fr="Adresse *" data-en="Address *">Adresse *</label>
+                    <input type="text" id="address" name="address" class="form-control" 
+                           placeholder="Commencez à taper votre adresse..." autocomplete="off" required>
+                    <div class="address-suggestions" id="addressSuggestions"></div>
+                    <div class="error-message" id="address-error"></div>
+                </div>
+
+                <button type="submit" class="btn-primary" data-fr="Enregistrer" data-en="Register">
+                    Enregistrer
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

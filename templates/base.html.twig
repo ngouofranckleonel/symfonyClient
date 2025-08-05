@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Formulaire Client{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+    <div class="language-selector">
+        <button onclick="changeLanguage('fr')" class="lang-btn active" data-lang="fr">FR</button>
+        <button onclick="changeLanguage('en')" class="lang-btn" data-lang="en">EN</button>
+    </div>
+    
+    {% block body %}{% endblock %}
+    
+    <script src="{{ asset('js/script.js') }}"></script>
+</body>
+</html>

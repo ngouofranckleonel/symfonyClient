@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="form-wrapper">
+        <h1 data-fr="Formulaire d'enregistrement client" data-en="Client Registration Form">
+            Formulaire d'enregistrement client
+        </h1>
+        
+        {% if success %}
+            <div class="success-message">
+                <h2 data-fr="Inscription réussie !" data-en="Registration successful!">Inscription réussie !</h2>
+                <div class="user-summary">
+                    <p><strong data-fr="Nom complet:" data-en="Full name:">Nom complet:</strong> {{ user.fullName|e }}</p>
+                    <p><strong data-fr="Email:" data-en="Email:">Email:</strong> {{ user.email|e }}</p>
+                    <p><strong data-fr="Téléphone:" data-en="Phone:">Téléphone:</strong> {{ user.phone|e }}</p>
+                    <p><strong data-fr="Date de naissance:" data-en="Birth date:">Date de naissance:</strong> 
+                        {{ user.birthDate ? user.birthDate|date('d/m/Y') : '' }}
+                    </p>
+                    <p><strong data-fr="Adresse:" data-en="Address:">Adresse:</strong> {{ user.address|e }}</p>
+                </div>
+                <button onclick="location.reload()" class="btn-primary" 
+                        data-fr="Nouveau formulaire" data-en="New form">
+                    Nouveau formulaire
+                </button>
+            </div>
+        {% else %}
+            {{ form_start(form, {'attr': {'id': 'clientForm', 'novalidate': 'novalidate'}}) }}
+                <div class="form-group">
+                    <label for="form_fullName" data-fr="Nom complet *" data-en="Full name *">Nom complet *</label>
+                    {{ form_widget(form.fullName, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre nom complet'}}) }}
+                    {% if errors.fullName is defined %}
+                        <div class="error-message">{{ errors.fullName }}</div>
+                    {% endif %}
+                    <div class="client-error" id="fullName-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="form_email" data-fr="Email *" data-en="Email *">Email *</label>
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'exemple@email.com'}}) }}
+                    {% if errors.email is defined %}
+                        <div class="error-message">{{ errors.email }}</div>
+                    {% endif %}
+                    <div class="client-error" id="email-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="form_phone" data-fr="Téléphone *" data-en="Phone *">Téléphone *</label>
+                    {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': '0123456789'}}) }}
+                    {% if errors.phone is defined %}
+                        <div class="error-message">{{ errors.phone }}</div>
+                    {% endif %}
+                    <div class="client-error" id="phone-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="form_birthDate" data-fr="Date de naissance *" data-en="Birth date *">Date de naissance *</label>
+                    {{ form_widget(form.birthDate, {'attr': {'class': 'form-control'}}) }}
+                    {% if errors.birthDate is defined %}
+                        <div class="error-message">{{ errors.birthDate }}</div>
+                    {% endif %}
+                    <div class="client-error" id="birthDate-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="form_address" data-fr="Adresse *" data-en="Address *">Adresse *</label>
+                    {{ form_widget(form.address, {'attr': {'class': 'form-control', 'placeholder': 'Commencez à taper votre adresse...', 'autocomplete': 'off'}}) }}
+                    <div class="address-suggestions" id="addressSuggestions"></div>
+                    {% if errors.address is defined %}
+                        <div class="error-message">{{ errors.address }}</div>
+                    {% endif %}
+                    <div class="client-error" id="address-error"></div>
+                </div>
+
+                {{ form_widget(form._token) }}
+                
+                <button type="submit" class="btn-primary" data-fr="Enregistrer" data-en="Register">
+                    Enregistrer
+                </button>
+            {{ form_end(form, {'render_rest': false}) }}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
