@@ -109,7 +109,7 @@ function applyThemeBasedOnTime() {
   const now = new Date()
   const hour = now.getHours()
 
-  // Thème sombre de 18h à 6h
+  // Thème sombre de 18h à 6h ]]
   if (hour >= 18 || hour < 6) {
     document.body.classList.add("dark-theme")
   } else {
