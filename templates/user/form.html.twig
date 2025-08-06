@@ -30,7 +30,7 @@
                     <label for="form_fullName" data-fr="Nom complet *" data-en="Full name *">Nom complet *</label>
                     {{ form_widget(form.fullName, {'attr': {'class': 'form-control', 'placeholder': 'Entrez votre nom complet'}}) }}
                     {% if errors.fullName is defined %}
-                        <div class="error-message">{{ errors.fullName }}</div>
+                        <div class="error-message" >{{ errors.fullName }}</div>
                     {% endif %}
                     <div class="client-error" id="fullName-error"></div>
                 </div>
